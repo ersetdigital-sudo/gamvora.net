@@ -3,281 +3,253 @@ import Image from "next/image";
 import { GAMES } from "@/lib/games";
 
 const GAMVORA_LOGO = (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <rect x="1.2" y="1.2" width="21.6" height="21.6" rx="6.4" stroke="currentColor" strokeWidth="1.7" />
-    <path d="M8 6.6v10.8h7.4" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" />
-    <circle cx="16.2" cy="8.4" r="1.9" fill="#ff5b26" />
+  <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-label="GAMVORA" style={{ flexShrink: 0 }}>
+    <defs>
+      <linearGradient id="gv26" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#c8ff2e" />
+        <stop offset="1" stopColor="#7b5cff" />
+      </linearGradient>
+    </defs>
+    <path d="M25.09 10.75A10.5 10.5 0 1 0 25.09 21.25" stroke="url(#gv26)" strokeWidth="4.4" strokeLinecap="round" />
+    <path d="M16.6 16H26.5" stroke="url(#gv26)" strokeWidth="4.4" strokeLinecap="round" />
   </svg>
 );
 
-const WHY_CARDS = [
-  { num: "01", title: "Pilih Game", desc: "Katalog fokus pada lima game populer, jadi kamu langsung menemukan yang dicari." },
-  { num: "02", title: "Masukkan ID", desc: "Cukup User ID. Zone ID hanya diperlukan untuk Mobile Legends dan Magic Chess Go Go." },
-  { num: "03", title: "Pilih Nominal", desc: "Sembilan pilihan nominal per game, dengan harga yang tampil sejak awal." },
-  { num: "04", title: "Bayar", desc: "Ringkasan pesanan tampil sebelum pembayaran, tanpa biaya tambahan tersembunyi." },
-];
-
-const HOW_STEPS = [
-  { num: "01", title: "Pilih game", desc: "Pilih game yang ingin kamu top up." },
-  { num: "02", title: "Masukkan User ID", desc: "Masukkan User ID, dan Zone ID bila diperlukan." },
-  { num: "03", title: "Pilih nominal", desc: "Tentukan nominal Diamond, UC, CP, atau Pass." },
-  { num: "04", title: "Bayar", desc: "Selesaikan pembayaran, pesanan diproses otomatis." },
+const WHY_ITEMS = [
+  { title: "Otomatis 24 jam", desc: "Sistem berjalan sepanjang hari, termasuk akhir pekan dan hari libur." },
+  { title: "Tanpa password", desc: "Kami hanya memerlukan ID publik. Keamanan akun tetap terjaga." },
+  { title: "Dukungan pelanggan", desc: "Waktu respons rata-rata di bawah 5 menit pada jam operasional." },
+  { title: "Jaminan dana kembali", desc: "Bila pesanan tidak masuk dalam 1×24 jam, dana dikembalikan sepenuhnya." },
 ];
 
 const FAQS = [
-  { q: "Bagaimana cara top up game di GAMVORA?", a: "Pilih game, masukkan User ID (dan Zone ID bila diperlukan), pilih nominal, lalu lanjutkan ke pembayaran." },
-  { q: "Apakah top up membutuhkan password?", a: "Tidak. GAMVORA tidak meminta password, OTP, PIN, maupun akses login ke akun game." },
-  { q: "Di mana saya menemukan User ID?", a: "User ID ada di halaman profil dalam game. Buka menu profil atau akun, lalu salin angka ID yang tertera." },
-  { q: "Apakah Zone ID diperlukan?", a: "Hanya untuk Mobile Legends dan Magic Chess Go Go. Zone ID ditulis di dalam tanda kurung setelah User ID." },
-  { q: "Berapa lama proses top up?", a: "Pesanan diproses otomatis setelah pembayaran terkonfirmasi. Bila ada antrean dari sisi penyedia, prosesnya bisa lebih lama." },
-  { q: "Apa yang harus dilakukan jika salah memasukkan User ID?", a: "Hubungi support secepatnya dengan bukti pesanan. Item yang sudah masuk ke ID lain tidak bisa ditarik kembali, jadi pastikan ID benar sebelum bayar." },
-  { q: "Apakah pembayaran bisa menggunakan QRIS?", a: "Ya. QRIS termasuk metode yang didukung, bersama e-wallet dan transfer bank." },
-  { q: "Game apa saja yang tersedia di GAMVORA?", a: "Mobile Legends, Free Fire, PUBG Mobile, Call of Duty Mobile, dan Magic Chess Go Go." },
+  { q: "Berapa lama pesanan diproses?", a: "Sebagian besar pesanan selesai dalam waktu kurang dari satu menit setelah pembayaran terkonfirmasi." },
+  { q: "Apakah aman untuk akun saya?", a: "Aman. Kami hanya meminta ID akun yang bersifat publik, dan tidak pernah meminta password atau kode verifikasi." },
+  { q: "Metode pembayaran apa saja yang tersedia?", a: "QRIS, e-wallet (DANA, OVO, GoPay), transfer bank, dan pulsa." },
+  { q: "Bagaimana jika ID yang saya masukkan salah?", a: "Hubungi dukungan pelanggan sebelum pesanan diproses. Jika sudah terkirim ke ID lain, pesanan tidak dapat dibatalkan." },
 ];
 
 export default function Home() {
-  const featured = GAMES[0];
-  const others = GAMES.slice(1);
+  const topGames = GAMES.slice(0, 4);
 
   return (
     <>
       {/* NAV */}
-      <header className="sticky top-0 z-[60] border-b border-line bg-paper/90 backdrop-blur-[saturate(1.6)_blur(8px)]">
-        <div className="wrap nav-inner h-[66px] flex items-center justify-between gap-6">
-          <Link href="/" className="flex items-center gap-[9px] font-display font-extrabold tracking-[-.02em] text-[18px]">
+      <header style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(12px)", background: "rgba(10,10,12,.72)", borderBottom: "1px solid var(--color-line)" }}>
+        <div className="wrap" style={{ height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9 }}>
             {GAMVORA_LOGO}
-            <span>LOOT<span className="accent">NEXA</span></span>
+            <span style={{ fontSize: 16, fontWeight: 600, letterSpacing: ".12em" }}>GAMVORA</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-[14.5px] text-ink font-semibold transition-colors">Home</Link>
-            <Link href="/game" className="text-[14.5px] text-grey hover:text-ink transition-colors">Game</Link>
-            <Link href="/#cara" className="text-[14.5px] text-grey hover:text-ink transition-colors">Cara Top Up</Link>
-            <Link href="/#aman" className="text-[14.5px] text-grey hover:text-ink transition-colors">Keamanan</Link>
-            <Link href="/#faq" className="text-[14.5px] text-grey hover:text-ink transition-colors">FAQ</Link>
+          <nav className="mut navlinks" style={{ display: "flex", alignItems: "center", gap: 28, fontSize: 14 }}>
+            <Link href="/#katalog">Katalog</Link>
+            <Link href="/#cara">Cara kerja</Link>
+            <Link href="/#alasan">Kenapa kami</Link>
+            <Link href="/#faq">FAQ</Link>
           </nav>
-          <Link href="/game" className="btn btn-primary btn-sm">Top Up</Link>
+          <Link href="/#katalog" className="btn btn-primary" style={{ padding: "9px 18px", fontSize: 14 }}>Top up</Link>
         </div>
       </header>
 
-      <main className="flex-1">
-        {/* HERO */}
-        <section className="hero pt-10 md:pt-16 pb-12 md:pb-16">
-          <div className="wrap">
-            <span className="pill"><span className="dot"></span>Top up game · Indonesia</span>
-            <h1 className="d1 mt-5 max-w-[15ch]">Top Up Game<br />Cepat &amp; Aman.</h1>
-            <div className="mt-7 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
-              <p className="sub text-[17.5px] max-w-[46ch]">Top up Mobile Legends, Free Fire, PUBG Mobile, COD Mobile, dan Magic Chess Go Go. Pilih game, masukkan User ID, pilih nominal, lalu bayar.</p>
-              <div className="flex gap-3">
-                <Link href="/game" className="btn btn-primary flex-1 md:flex-none text-center">Top Up Sekarang</Link>
-                <Link href="/game" className="btn border border-white/20 text-paper bg-transparent hover:border-white/40 hover:text-white transition flex-1 md:flex-none text-center">Lihat Game</Link>
-              </div>
+      {/* HERO */}
+      <section style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid var(--color-line)" }}>
+        <div className="hero-glow" />
+        <div className="wrap hero-grid hero-sec" style={{ position: "relative", paddingTop: 76, paddingBottom: 76 }}>
+          <div>
+            <span className="pill"><span className="dot" />Sistem aktif 24 jam</span>
+            <h1 className="h1" style={{ marginTop: 20, maxWidth: 520 }}>Top up game, tanpa ribet.</h1>
+            <p className="mut" style={{ marginTop: 16, maxWidth: 440, fontSize: 16, lineHeight: 1.7 }}>
+              Masukkan ID, pilih nominal, bayar. Saldo dikirim otomatis dari distributor resmi.
+            </p>
+            <div className="hero-cta" style={{ marginTop: 28, display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Link href="/#katalog" className="btn btn-primary">Pilih game</Link>
+              <Link href="/#cara" className="btn btn-ghost">Cara kerja</Link>
             </div>
-            <div className="trust">
-              <div>Tanpa password</div>
-              <div>Tanpa login akun</div>
-              <div>Proses otomatis</div>
+            <div className="mut hero-stats" style={{ marginTop: 32, display: "flex", gap: 26, flexWrap: "wrap", fontSize: 13 }}>
+              <span><span style={{ color: "var(--color-paper)", fontWeight: 600 }} className="num">5</span> game</span>
+              <span><span style={{ color: "var(--color-paper)", fontWeight: 600 }} className="num">~12 dtk</span> rata-rata proses</span>
+              <span><span style={{ color: "var(--color-paper)", fontWeight: 600 }} className="num">99,9%</span> berhasil</span>
             </div>
           </div>
-        </section>
 
-        {/* CATALOG */}
-        <section className="pb-4">
-          <div className="wrap">
-            <hr className="rule" />
-            <div className="flex flex-wrap items-end justify-between gap-4 pt-8 pb-6">
-              <h2 className="d2 max-w-[16ch]">Lima Game, Satu Alur Top Up</h2>
-              <Link href="/game" className="text-[15px] font-bold accent">Semua game →</Link>
+          <div className="hero-panel">
+            <div className="eyebrow" style={{ color: "var(--color-grey)" }}>Paling sering di-top up</div>
+            <div style={{ marginTop: 14, display: "grid", gap: 8 }}>
+              {topGames.map((g) => (
+                <Link key={g.slug} href={`/top-up/${g.slug}`} className="qrow">
+                  <span className="tile" style={{ width: 34, height: 34, padding: 5 }}>
+                    <Image src={g.logo} alt={g.name} width={24} height={24} />
+                  </span>
+                  <span style={{ fontSize: 14, fontWeight: 500 }}>{g.name}</span>
+                  <span className="mut" style={{ marginLeft: "auto", fontSize: 13 }}>{g.cur}</span>
+                </Link>
+              ))}
             </div>
-            <div className="grid gap-4 md:grid-cols-[1.05fr_1.35fr]">
-              {/* Featured: Mobile Legends */}
-              <Link href={`/top-up/${featured.slug}`} className="card gcard p-6 md:p-9 flex flex-col justify-between md:row-span-2">
-                <div>
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="label">Paling dicari</span>
-                    <span className="label">{featured.cur}</span>
+            <Link href="/#katalog" className="mut" style={{ display: "block", marginTop: 14, fontSize: 13 }}>Lihat semua game →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* KATALOG */}
+      <section id="katalog" className="sec">
+        <div className="wrap">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 24, flexWrap: "wrap" }}>
+            <div>
+              <span className="eyebrow">Katalog</span>
+              <h2 className="h2" style={{ marginTop: 12 }}>Pilih game</h2>
+            </div>
+            <p className="mut" style={{ maxWidth: 380, fontSize: 14, lineHeight: 1.6 }}>Seluruh transaksi diproses melalui distributor resmi dan dikirim langsung ke ID akun.</p>
+          </div>
+
+          <div style={{ marginTop: 36, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 12 }}>
+            {GAMES.map((g) => (
+              <Link key={g.slug} href={`/top-up/${g.slug}`} className="card gcard">
+                <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                  <div className="tile" style={{ width: 48, height: 48, padding: 7, flexShrink: 0 }}>
+                    <Image src={g.logo} alt={g.name} width={34} height={34} />
                   </div>
-                  <div className="mt-7 flex justify-center rounded-xl overflow-hidden" style={{ height: 190 }}>
-                    <Image src={featured.logo} alt={featured.name} width={140} height={140} className="object-contain w-[140px] h-[140px] self-center" />
+                  <div>
+                    <div style={{ fontWeight: 550, fontSize: 15 }}>{g.name}</div>
+                    <div className="mut" style={{ fontSize: 13, marginTop: 2 }}>{g.cur}</div>
                   </div>
-                  <h3 className="d3 mt-8">{featured.name}</h3>
-                  <p className="sub mt-3 text-[15.5px] max-w-[36ch]">Top up Diamond Mobile Legends dikirim ke User ID dan Zone ID yang kamu masukkan, tanpa login akun.</p>
                 </div>
-                <span className="btn btn-primary btn-sm mt-8 self-start">Top Up Mobile Legends</span>
+                <span className="gbtn">Top up</span>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Others */}
-              <div className="grid gap-4 content-start">
-                {others.map((g) => (
-                  <Link key={g.slug} href={`/top-up/${g.slug}`} className="card gcard p-4 sm:p-5 flex items-center gap-4">
-                    <div className="shrink-0 w-[78px] h-[60px] rounded-xl flex items-center justify-center overflow-hidden">
-                      <Image src={g.logo} alt={g.name} width={48} height={48} className="object-contain w-[48px] h-[48px]" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-extrabold text-[16.5px] tracking-tight">{g.name}</h3>
-                      <p className="sub text-[14px] mt-1">
-                        <span className="badge">{g.cur}</span>
-                        <br />
-                        Top up {g.cur} {g.name} ke User ID kamu.
-                      </p>
-                    </div>
-                    <span className="accent font-bold text-[15px] shrink-0">→</span>
-                  </Link>
-                ))}
-              </div>
+      <div className="rule" />
+
+      {/* CARA KERJA */}
+      <section id="cara" className="sec">
+        <div className="wrap">
+          <span className="eyebrow">Cara kerja</span>
+          <h2 className="h2" style={{ marginTop: 12 }}>Tiga langkah</h2>
+
+          <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+            <div className="card" style={{ padding: 26 }}>
+              <div className="num" style={{ fontSize: 13, fontWeight: 600, color: "var(--color-accent)" }}>01</div>
+              <div style={{ marginTop: 14, fontWeight: 600, fontSize: 16 }}>Masukkan ID akun</div>
+              <p className="mut" style={{ marginTop: 8, fontSize: 14, lineHeight: 1.65 }}>Cukup User ID dan Server bila diminta. Kami tidak pernah meminta password atau akses login.</p>
+            </div>
+            <div className="card" style={{ padding: 26 }}>
+              <div className="num" style={{ fontSize: 13, fontWeight: 600, color: "var(--color-violet)" }}>02</div>
+              <div style={{ marginTop: 14, fontWeight: 600, fontSize: 16 }}>Pilih nominal &amp; bayar</div>
+              <p className="mut" style={{ marginTop: 8, fontSize: 14, lineHeight: 1.65 }}>Tersedia QRIS, e-wallet, transfer bank, dan pulsa. Harga yang tertera sudah final.</p>
+            </div>
+            <div className="card" style={{ padding: 26 }}>
+              <div className="num" style={{ fontSize: 13, fontWeight: 600, color: "var(--color-hot)" }}>03</div>
+              <div style={{ marginTop: 14, fontWeight: 600, fontSize: 16 }}>Saldo masuk otomatis</div>
+              <p className="mut" style={{ marginTop: 8, fontSize: 14, lineHeight: 1.65 }}>Pesanan diproses otomatis dan bukti transaksi dikirim ke email atau WhatsApp.</p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* WHY */}
-        <section className="sec why">
-          <div className="wrap">
-            <div className="grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
-              <div>
-                <p className="label">Kenapa GAMVORA</p>
-                <h2 className="d2 mt-5 max-w-[16ch]">Kenapa Top Up di GAMVORA</h2>
-              </div>
-              <p className="sub text-[16.5px] max-w-[40ch] md:justify-self-end">Empat hal yang bikin prosesnya ringkas: katalog fokus, data minimal, harga transparan, pembayaran jelas.</p>
+      <div className="rule" />
+
+      {/* ALASAN */}
+      <section id="alasan" className="sec">
+        <div className="wrap">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 56, alignItems: "start" }}>
+            <div>
+              <span className="eyebrow">Kenapa GAMVORA</span>
+              <h2 className="h2" style={{ marginTop: 12 }}>Kenapa pakai GAMVORA</h2>
+              <p className="mut" style={{ marginTop: 20, fontSize: 15, lineHeight: 1.7, maxWidth: 420 }}>Setiap transaksi tercatat, seluruh nominal berasal dari sumber resmi, dan dana dikembalikan penuh apabila pesanan gagal diproses.</p>
             </div>
-            <div className="wgrid mt-10">
-              {WHY_CARDS.map((c) => (
-                <div key={c.num} className="wcard">
-                  <span className="wnum">{c.num}</span>
-                  <h3 className="wtitle">{c.title}</h3>
-                  <p className="sub text-[15px] mt-2 leading-[1.65]">{c.desc}</p>
+            <div style={{ display: "grid", gap: 1, background: "var(--color-line)", border: "1px solid var(--color-line)", borderRadius: 14, overflow: "hidden" }}>
+              {WHY_ITEMS.map((item) => (
+                <div key={item.title} style={{ background: "var(--color-ink)", padding: "22px 24px" }}>
+                  <div style={{ fontWeight: 600, fontSize: 15 }}>{item.title}</div>
+                  <p className="mut" style={{ marginTop: 6, fontSize: 14, lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* HOW TO */}
-        <section id="cara" className="bg-ink text-paper sec">
-          <div className="wrap">
-            <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-end">
-              <h2 className="d2 max-w-[14ch]">Cara Top Up dalam 4 Langkah</h2>
-              <p className="sub text-[16.5px] max-w-[42ch] md:justify-self-end" style={{ color: "#9a9aa4" }}>Alurnya sama untuk semua game, sehingga mudah diikuti setiap kali kamu top up.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-6 mt-10">
-              {HOW_STEPS.map((s) => (
-                <div key={s.num} className="border-t border-line-dark pt-[18px]">
-                  <p className="label" style={{ color: "#9a9aa4" }}>{s.num}</p>
-                  <h3 className="text-[19px] font-extrabold mt-3 tracking-tight">{s.title}</h3>
-                  <p className="sub text-[15px] mt-2 max-w-[30ch]" style={{ color: "#9a9aa4" }}>{s.desc}</p>
-                </div>
-              ))}
-            </div>
+      <div className="rule" />
+
+      {/* FAQ */}
+      <section id="faq" className="sec">
+        <div className="wrap">
+          <span className="eyebrow">FAQ</span>
+          <h2 className="h2" style={{ marginTop: 12 }}>Pertanyaan umum</h2>
+
+          <div style={{ marginTop: 36, maxWidth: 760 }}>
+            {FAQS.map((f, i) => (
+              <details key={i} style={{ borderTop: "1px solid var(--color-line)", padding: "20px 0", borderBottom: i === FAQS.length - 1 ? "1px solid var(--color-line)" : undefined }}>
+                <summary style={{ display: "flex", justifyContent: "space-between", gap: 16, fontSize: 15, fontWeight: 500 }}>
+                  {f.q}
+                  <span className="chev">+</span>
+                </summary>
+                <p className="mut" style={{ marginTop: 12, fontSize: 14, lineHeight: 1.7 }}>{f.a}</p>
+              </details>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* SECURITY */}
-        <section id="aman" className="sec">
-          <div className="wrap">
-            <div className="grid gap-6 md:grid-cols-[auto_1fr] md:gap-14 items-start">
-              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink)" strokeWidth="1.4" aria-hidden="true">
-                <rect x="4" y="10.2" width="16" height="10.4" rx="2.2" />
-                <path d="M8.2 10.2V7.6a3.8 3.8 0 0 1 7.6 0v2.6" />
-                <circle cx="12" cy="15.4" r="1.2" fill="#ff5b26" stroke="none" />
-              </svg>
-              <div>
-                <h2 className="d2 max-w-[16ch]">Keamanan Akun Kamu Terjaga</h2>
-                <p className="sub text-[17px] mt-8 md:mt-10 max-w-[54ch] leading-[1.8]" style={{ marginTop: 20 }}>
-                  GAMVORA hanya membutuhkan User ID untuk memproses top up. Kami tidak pernah meminta password, OTP, maupun PIN akun game kamu.
-                </p>
-                <div className="grid sm:grid-cols-3 gap-7 lg:gap-8 mt-11 max-w-[760px]">
-                  <div className="border-t border-line pt-[18px]">
-                    <p className="font-extrabold text-[16px] tracking-tight">Cukup User ID</p>
-                    <p className="sub text-[14.5px] mt-2.5 leading-[1.7]">Data yang diminta hanya yang diperlukan untuk mengirim item.</p>
-                  </div>
-                  <div className="border-t border-line pt-[18px]">
-                    <p className="font-extrabold text-[16px] tracking-tight">Tanpa OTP</p>
-                    <p className="sub text-[14.5px] mt-2.5 leading-[1.7]">Kami tidak pernah meminta kode verifikasi apa pun.</p>
-                  </div>
-                  <div className="border-t border-line pt-[18px]">
-                    <p className="font-extrabold text-[16px] tracking-tight">Tanpa login akun</p>
-                    <p className="sub text-[14.5px] mt-2.5 leading-[1.7]">Akun game kamu tidak pernah diakses dari sisi kami.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* CTA */}
+      <section style={{ paddingBottom: 96 }}>
+        <div className="wrap">
+          <div style={{ border: "1px solid var(--color-line)", borderRadius: 18, padding: "56px 32px", textAlign: "center", background: "radial-gradient(600px 260px at 50% 0%, rgba(200,255,46,.10), transparent 70%), var(--color-panel)" }}>
+            <h2 className="h2">Mulai top up sekarang</h2>
+            <p className="mut" style={{ marginTop: 12, fontSize: 15 }}>Pilih game, selesai dalam hitungan detik.</p>
+            <Link href="/#katalog" className="btn btn-primary" style={{ marginTop: 26 }}>Mulai top up</Link>
           </div>
-        </section>
-
-        {/* SEO / EDITORIAL */}
-        <section className="sec" style={{ background: "var(--color-paper-2)" }}>
-          <div className="wrap grid gap-8 md:gap-12 md:grid-cols-[.85fr_1.15fr]">
-            <div>
-              <p className="label">Tentang GAMVORA</p>
-              <h2 className="d2 mt-5 max-w-[13ch]">Tentang Layanan Top Up GAMVORA</h2>
-            </div>
-            <div className="text-[16.5px] leading-[1.8] sub grid gap-4 max-w-[62ch]">
-              <p>GAMVORA adalah layanan <strong className="text-ink">top up game</strong> untuk pengguna Indonesia. Katalognya dibatasi pada lima judul yang paling banyak dimainkan, jadi kamu tidak perlu mencari-cari menu.</p>
-              <h3 className="text-[19px] font-extrabold tracking-tight text-ink">Game yang tersedia</h3>
-              <p><strong className="text-ink">Top up Mobile Legends</strong> dan <strong className="text-ink">Magic Chess Go Go</strong> untuk Diamond, <strong className="text-ink">Free Fire</strong> untuk Diamond, <strong className="text-ink">PUBG Mobile</strong> untuk UC, dan <strong className="text-ink">COD Mobile</strong> untuk CP.</p>
-              <h3 className="text-[19px] font-extrabold tracking-tight text-ink">Cara kerjanya</h3>
-              <p>Alurnya sama di semua game: pilih game, isi User ID, pilih nominal, bayar. Kami hanya butuh ID akun — tanpa password, tanpa OTP, tanpa login ke akun game kamu.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section id="faq" className="sec">
-          <div className="wrap grid gap-8 md:gap-12 md:grid-cols-[.7fr_1.3fr]">
-            <div>
-              <p className="label">FAQ</p>
-              <h2 className="d2 mt-5 max-w-[10ch]">Pertanyaan yang sering muncul.</h2>
-            </div>
-            <div>
-              <hr className="rule" />
-              {FAQS.map((f) => (
-                <details key={f.q} className="faq">
-                  <summary>{f.q}</summary>
-                  <p>{f.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-      </main>
+        </div>
+      </section>
 
       {/* FOOTER */}
-      <footer className="bg-ink border-t border-white/[0.08]">
-        <div className="wrap py-12 md:py-16">
-          <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
-            <div>
-              <Link href="/" className="inline-flex items-center gap-[9px] font-display font-extrabold tracking-[-.02em] text-[18px] text-paper">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="1.2" y="1.2" width="21.6" height="21.6" rx="6.4" stroke="white" strokeWidth="1.7" />
-                  <path d="M8 6.6v10.8h7.4" stroke="white" strokeWidth="2.4" strokeLinecap="square" />
-                  <circle cx="16.2" cy="8.4" r="1.9" fill="#ff5b26" />
-                </svg>
-                <span>LOOT<span className="accent">NEXA</span></span>
-              </Link>
-              <p className="text-[14.5px] mt-4 max-w-[34ch]" style={{ color: "#9a9aa4" }}>Top up game cepat, aman, dan simpel untuk gamer Indonesia.</p>
+      <footer style={{ borderTop: "1px solid var(--color-line)" }}>
+        <div className="wrap" style={{ paddingTop: 56, paddingBottom: 40, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40 }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                <defs><linearGradient id="gv24" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stopColor="#c8ff2e" /><stop offset="1" stopColor="#7b5cff" /></linearGradient></defs>
+                <path d="M25.09 10.75A10.5 10.5 0 1 0 25.09 21.25" stroke="url(#gv24)" strokeWidth="4.4" strokeLinecap="round" />
+                <path d="M16.6 16H26.5" stroke="url(#gv24)" strokeWidth="4.4" strokeLinecap="round" />
+              </svg>
+              <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: ".12em" }}>GAMVORA</span>
             </div>
-            <div>
-              <p className="font-display font-bold text-[13px] uppercase tracking-wider" style={{ color: "#9a9aa4" }}>Game</p>
-              <div className="mt-4 grid gap-2.5 text-[14.5px]">
-                {GAMES.map((g) => (
-                  <Link key={g.slug} href={`/top-up/${g.slug}`} className="hover:text-white transition" style={{ color: "#9a9aa4" }}>{g.name}</Link>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="font-display font-bold text-[13px] uppercase tracking-wider" style={{ color: "#9a9aa4" }}>Halaman</p>
-              <div className="mt-4 grid gap-2.5 text-[14.5px]">
-                <Link href="/game" className="hover:text-white transition" style={{ color: "#9a9aa4" }}>Semua Game</Link>
-                <Link href="/#cara" className="hover:text-white transition" style={{ color: "#9a9aa4" }}>Cara Top Up</Link>
-                <Link href="/#aman" className="hover:text-white transition" style={{ color: "#9a9aa4" }}>Keamanan</Link>
-                <Link href="/#faq" className="hover:text-white transition" style={{ color: "#9a9aa4" }}>FAQ</Link>
-              </div>
+            <p className="mut" style={{ marginTop: 14, fontSize: 13, lineHeight: 1.7, maxWidth: 260 }}>Layanan top up game resmi dengan proses otomatis 24 jam dan harga transparan.</p>
+          </div>
+          <div>
+            <div className="eyebrow">Katalog</div>
+            <div style={{ marginTop: 14, display: "grid", gap: 10, fontSize: 14 }}>
+              {GAMES.map((g) => (
+                <Link key={g.slug} href={`/top-up/${g.slug}`} className="mut">{g.name}</Link>
+              ))}
             </div>
           </div>
-          <hr className="my-8 border-white/[0.08]" />
-          <div className="flex flex-col md:flex-row gap-3 justify-between text-[13px]" style={{ color: "#9a9aa4" }}>
-            <p>© 2026 GAMVORA. All rights reserved.</p>
-            <p className="max-w-[50ch]">Nama game dan mata uang dalam game adalah milik publisher masing-masing. GAMVORA tidak berafiliasi dengan publisher mana pun.</p>
+          <div>
+            <div className="eyebrow">Informasi</div>
+            <div style={{ marginTop: 14, display: "grid", gap: 10, fontSize: 14 }}>
+              <Link href="/#cara" className="mut">Cara kerja</Link>
+              <Link href="/#alasan" className="mut">Kenapa kami</Link>
+              <Link href="/#faq" className="mut">Pertanyaan umum</Link>
+              <Link href="/#katalog" className="mut">Semua game</Link>
+            </div>
           </div>
+          <div>
+            <div className="eyebrow">Bantuan</div>
+            <div className="mut" style={{ marginTop: 14, display: "grid", gap: 10, fontSize: 14 }}>
+              <span>Dukungan 24 jam</span>
+              <a href="mailto:support@gamvora.net">support@gamvora.net</a>
+              <span>Respons rata-rata &lt; 5 menit</span>
+            </div>
+            <div className="eyebrow" style={{ marginTop: 26 }}>Pembayaran</div>
+            <div className="mut" style={{ marginTop: 12, fontSize: 13, lineHeight: 1.7 }}>QRIS · DANA · OVO · GoPay · Transfer bank</div>
+          </div>
+        </div>
+        <div className="streak" />
+        <div className="wrap mut" style={{ paddingTop: 20, paddingBottom: 32, display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", fontSize: 12 }}>
+          <span>© 2026 GAMVORA · gamvora.net</span>
+          <span>Semua merek dan logo game adalah milik penerbit masing-masing.</span>
         </div>
       </footer>
     </>
