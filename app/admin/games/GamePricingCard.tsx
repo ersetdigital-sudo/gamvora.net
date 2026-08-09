@@ -160,7 +160,7 @@ export function GamePricingCard({ game, nominals }: GameCardProps) {
     }
   };
 
-  const inputClass = "bg-raise border border-line rounded-lg px-3 py-2 text-sm text-ink outline-none focus:border-accent/40 transition";
+  const inputClass = "bg-raise border border-line rounded-lg px-3 py-2 text-sm text-paper outline-none focus:border-accent/40 transition";
 
   return (
     <>
@@ -168,7 +168,7 @@ export function GamePricingCard({ game, nominals }: GameCardProps) {
         {/* Card header */}
         <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-line">
           <div className="min-w-0">
-            <h3 className="font-display text-base font-semibold text-ink truncate">{game.name}</h3>
+            <h3 className="font-display text-base font-semibold text-paper truncate">{game.name}</h3>
             <p className="text-[11px] text-grey mt-0.5">{game.range_label}</p>
           </div>
           <Toggle
@@ -208,7 +208,7 @@ export function GamePricingCard({ game, nominals }: GameCardProps) {
                   <button
                     onClick={() => setEditing(null)}
                     disabled={loading}
-                    className="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-paper-2 text-grey hover:text-ink hover:bg-line transition disabled:opacity-50"
+                    className="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-paper-2 text-grey hover:text-paper hover:bg-line transition disabled:opacity-50"
                     title="Batal"
                   >
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -216,8 +216,8 @@ export function GamePricingCard({ game, nominals }: GameCardProps) {
                 </>
               ) : (
                 <>
-                  <span className="flex-1 min-w-0 text-sm text-ink/70 truncate">{item.nominal_label}</span>
-                  <span className="shrink-0 text-sm text-grey font-mono tabular-nums">
+                  <span className="flex-1 min-w-0 text-sm text-paper truncate">{item.nominal_label}</span>
+                  <span className="shrink-0 text-sm text-paper/60 font-mono tabular-nums">
                     {formatRupiah(item.price)}
                   </span>
                   <button

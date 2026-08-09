@@ -52,7 +52,7 @@ export default async function AdminGamesPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="font-display text-xl font-semibold text-ink">Kelola Harga</h1>
+        <h1 className="font-display text-xl font-semibold text-paper">Kelola Harga</h1>
         <p className="mt-1 text-sm text-grey">Edit nominal dan harga per game</p>
       </div>
 

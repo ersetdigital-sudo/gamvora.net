@@ -22,7 +22,7 @@ export default async function AdminQrisPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="font-display text-xl font-semibold text-ink">Kelola QRIS</h1>
+        <h1 className="font-display text-xl font-semibold text-paper">Kelola QRIS</h1>
         <p className="mt-1 text-sm text-grey">Upload dan atur gambar QRIS untuk pembayaran</p>
       </div>
 

@@ -94,7 +94,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <header className="lg:hidden border-b border-line px-4 py-3 flex items-center justify-between bg-paper">
           <div className="flex items-center gap-2">
             <LogoMark className="w-6 h-6 shrink-0" />
-            <span className="font-display font-semibold text-sm tracking-tight text-ink">Admin</span>
+            <span className="font-display font-semibold text-sm tracking-tight text-paper">Admin</span>
           </div>
           <div className="flex items-center gap-2">
             {email && (
@@ -102,7 +102,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             )}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-grey hover:text-ink hover:bg-paper-2 transition"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-grey hover:text-paper hover:bg-paper-2 transition"
             >
               {mobileOpen ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -124,7 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={`flex items-center gap-2.5 px-3 py-2.5 text-sm rounded-lg transition ${
                   pathname === item.href
                     ? "text-white bg-accent"
-                    : "text-ink hover:bg-paper-2"
+                    : "text-paper hover:bg-paper-2"
                 }`}
               >
                 <span className={pathname === item.href ? "text-white/80" : "text-grey"}>{item.icon}</span>
