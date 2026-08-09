@@ -88,7 +88,7 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
                   }`}
                 >
                   <div className="font-semibold text-sm">{n.label}</div>
-                  <div className="mono text-sm text-accent mt-1">{rp(n.price)}</div>
+                  <div className="mono text-sm text-accent mt-1">{rupiah(n.price)}</div>
                 </button>
               ))}
             </div>
@@ -119,7 +119,7 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
             </div>
             <div className="border-t border-line mt-5 pt-5 flex justify-between items-center">
               <span className="text-grey text-sm">Total</span>
-              <span className="mono text-2xl font-bold">{selected ? rp(selected.price) : "Rp 0"}</span>
+              <span className="mono text-2xl font-bold">{selected ? rupiah(selected.price) : "Rp 0"}</span>
             </div>
             <button
               type="button"
@@ -195,7 +195,7 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
                   }`}
                 >
                   <div className="text-sm font-semibold">{n.label}</div>
-                  <div className="text-xs text-accent mt-0.5 mono">{rp(n.price)}</div>
+                  <div className="text-xs text-accent mt-0.5 mono">{rupiah(n.price)}</div>
                 </button>
               ))}
             </div>
@@ -219,7 +219,7 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-line bg-ink/95 backdrop-blur-xl px-5 py-3 flex items-center justify-between gap-4">
         <div>
           <p className="text-[10px] text-grey mono tracking-widest">TOTAL</p>
-          <p className="mono text-xl font-bold">{selected ? rp(selected.price) : "Rp 0"}</p>
+          <p className="mono text-xl font-bold">{selected ? rupiah(selected.price) : "Rp 0"}</p>
         </div>
         <button
           type="button"
