@@ -95,7 +95,7 @@ export default async function TopUpPage({ params }: PageProps) {
       <footer className="border-t border-line hidden sm:block">
         <div className="max-w-5xl mx-auto px-5 py-10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-grey">
           <div className="flex items-center gap-2">
-            {GAMVORA_LOGO}
+            <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="gv-f" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stopColor="#c8ff2e" /><stop offset="1" stopColor="#7b5cff" /></linearGradient></defs><path d="M25.09 10.75A10.5 10.5 0 1 0 25.09 21.25" stroke="url(#gv-f)" strokeWidth="4.4" strokeLinecap="round" /><path d="M16.6 16H26.5" stroke="url(#gv-f)" strokeWidth="4.4" strokeLinecap="round" /></svg>
             <span>© 2026 GAMVORA</span>
           </div>
           <span>Semua merek dan logo game adalah milik penerbit masing-masing.</span>
