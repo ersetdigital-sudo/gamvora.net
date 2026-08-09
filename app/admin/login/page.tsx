@@ -93,18 +93,18 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-paper flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-[0.08]" style={{ background: "#ff5b26" }} />
-        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.05]" style={{ background: "#ff5b26" }} />
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-[0.08]" style={{ background: "#c8ff2e" }} />
+        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.05]" style={{ background: "#c8ff2e" }} />
       </div>
 
-      <div className="relative w-full max-w-[1050px] min-h-[700px] rounded-[2.5rem] border border-line bg-white/95 backdrop-blur-sm shadow-2xl overflow-hidden z-10 flex">
+      <div className="relative w-full max-w-[1050px] min-h-[700px] rounded-[2.5rem] border border-line bg-panel/95 backdrop-blur-sm shadow-2xl overflow-hidden z-10 flex">
         {/* Left panel */}
         <div className="hidden lg:flex w-[56%] relative overflow-hidden rounded-l-[2.5rem]">
           <div className="absolute inset-0" style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 0% 100%)" }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-[#ff5b26]/10 via-[#0d0d0f] to-[#0d0d0f]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#c8ff2e]/10 via-[#0d0d0f] to-[#0d0d0f]" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0f] via-transparent to-[#0d0d0f]/60" />
             <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,91,38,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,91,38,0.4) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
-            <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl opacity-15" style={{ background: "#ff5b26" }} />
+            <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full blur-3xl opacity-15" style={{ background: "#c8ff2e" }} />
 
             <div className="absolute inset-0 flex flex-col justify-between p-10">
               <div className="flex items-center justify-between">
@@ -113,14 +113,14 @@ export default function AdminLoginPage() {
                   <span className="font-display font-semibold text-white text-sm">GAMVORA</span>
                 </div>
                 <div className="flex gap-6 text-[11px] uppercase tracking-[.15em] text-white/60">
-                  <span className="text-[#ff5b26]">Admin</span>
+                  <span className="text-[#c8ff2e]">Admin</span>
                   <span>Panel</span>
                 </div>
               </div>
 
               <div className="flex-1 flex items-center">
                 <div>
-                  <p className="text-[11px] uppercase tracking-[.3em] text-[#ff5b26] mb-3 font-medium">Dashboard</p>
+                  <p className="text-[11px] uppercase tracking-[.3em] text-[#c8ff2e] mb-3 font-medium">Dashboard</p>
                   <h2 className="font-display text-4xl font-bold text-white leading-tight">
                     Kelola <span className="accent">GAMVORA</span>
                     <br />
@@ -148,7 +148,7 @@ export default function AdminLoginPage() {
         <div className="w-full lg:w-[44%] flex flex-col items-center justify-center p-8 lg:p-12 relative">
           <div className="w-full max-w-[340px]">
             <div className="mb-8">
-              <p className="text-[11px] uppercase tracking-[.3em] text-[#ff5b26] mb-2 font-medium">Admin Panel</p>
+              <p className="text-[11px] uppercase tracking-[.3em] text-[#c8ff2e] mb-2 font-medium">Admin Panel</p>
               <h1 className="font-display text-2xl font-bold text-ink">
                 Hi, <span className="accent">Admin</span>
               </h1>
