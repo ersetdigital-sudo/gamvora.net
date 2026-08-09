@@ -116,7 +116,6 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
             >
               Bayar Sekarang
             </button>
-            <p className="mt-3 text-[11px] text-grey text-center">Rata-rata selesai dalam 12 detik.</p>
           </div>
         </div>
       </div>
