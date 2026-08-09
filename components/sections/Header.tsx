@@ -12,6 +12,7 @@ const GAMVORA_LOGO = (
 );
 
 const NAV = [
+  { href: "/", label: "Home" },
   { href: "/#katalog", label: "Katalog" },
   { href: "/#cara", label: "Cara kerja" },
   { href: "/#alasan", label: "Kenapa kami" },
