@@ -234,7 +234,7 @@ export default function AdminLoginPage() {
 
               <p className="text-center text-[13px] text-grey pt-2">
                 Belum punya akses?{" "}
-                <span className="text-accent hover:text-[#e94a17] cursor-pointer transition">Hubungi developer</span>
+                <span className="text-accent font-semibold hover:brightness-110 cursor-pointer transition underline">Hubungi developer</span>
               </p>
             </form>
 
