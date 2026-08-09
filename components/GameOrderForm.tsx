@@ -93,19 +93,6 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
               ))}
             </div>
           </div>
-
-          {/* Step 3 */}
-          <div>
-            <h2 className="text-lg font-semibold flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-accent/10 text-accent flex items-center justify-center text-sm font-bold">03</span>
-              Metode pembayaran
-            </h2>
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {["QRIS", "E-Wallet", "Transfer Bank", "Pulsa"].map((m) => (
-                <div key={m} className="p-4 rounded-xl border border-line text-center text-sm text-grey bg-raise">{m}</div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Right: Summary */}
@@ -197,18 +184,6 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
                   <div className="text-sm font-semibold">{n.label}</div>
                   <div className="text-xs text-accent mt-0.5 mono">{rupiah(n.price)}</div>
                 </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Payment */}
-          <div className="rounded-2xl border border-line bg-panel p-5">
-            <h2 className="text-sm font-bold mb-3 flex items-center gap-2">
-              <span className="text-accent">03</span> Pembayaran
-            </h2>
-            <div className="grid grid-cols-2 gap-2">
-              {["QRIS", "E-Wallet", "Transfer Bank", "Pulsa"].map((m) => (
-                <div key={m} className="p-3 rounded-xl border border-line text-center text-xs text-grey">{m}</div>
               ))}
             </div>
           </div>
