@@ -76,84 +76,97 @@ export function CheckoutOverlay({ order, onClose }: CheckoutOverlayProps) {
   const low = secondsLeft <= 30;
 
   return (
-    <div className="fixed inset-0 z-[120] grid place-items-center p-5" style={{ background: "rgba(13,13,15,.55)" }}>
+    <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center sm:p-5" style={{ background: "rgba(10,10,12,.85)", backdropFilter: "blur(8px)" }}>
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl max-w-[400px] w-full p-7 text-center border border-line shadow-2xl">
-        {step === "pay" && (
-          <div>
-            <div className="flex items-start justify-between gap-4 mb-5">
-              <div className="text-left">
-                <p className="text-[11px] uppercase tracking-[.15em] text-grey">Pembayaran</p>
-                <h3 className="font-display text-xl font-bold mt-1">Scan QRIS</h3>
-              </div>
-              <button type="button" onClick={onClose} className="text-grey hover:text-ink text-xl leading-none">&times;</button>
+      
+      {/* PAY STEP */}
+      {step === "pay" && (
+        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0 max-h-[90vh] overflow-y-auto">
+          {/* Header */}
+          <div className="sticky top-0 bg-panel/95 backdrop-blur-xl border-b border-line px-5 py-4 flex items-center justify-between z-10">
+            <div>
+              <p className="text-[11px] uppercase tracking-[.15em] text-grey">Pembayaran</p>
+              <h3 className="text-lg font-bold mt-0.5">Scan QRIS</h3>
+            </div>
+            <button type="button" onClick={onClose} className="w-9 h-9 rounded-full border border-line flex items-center justify-center text-grey hover:text-paper hover:border-grey/50 transition text-lg">×</button>
+          </div>
+
+          <div className="p-5 space-y-4">
+            {/* Timer */}
+            <div className="flex items-center gap-3 rounded-xl border border-line px-4 py-3 bg-raise">
+              <svg className="timer-ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="rgba(255,255,255,.06)" /><circle cx="22" cy="22" r="19" stroke={low ? "#f87171" : "#c8ff2e"} strokeDasharray={String(RING_C)} strokeDashoffset={String(ringOffset)} /></svg>
+              <div className="flex-1"><p className="text-[11px] text-grey uppercase tracking-[.12em]">Bayar dalam</p><p className={`text-xl font-bold mono ${low ? "text-red-400" : "text-accent"}`}>{mm}:{ss}</p></div>
+              <span className="flex items-center gap-1.5 text-[11px] text-[#39e5b6]"><span className="pulse-dot" /> Menunggu</span>
             </div>
 
-            <div className="flex items-center gap-3 border border-line rounded-2xl px-4 py-3 bg-paper">
-              <svg className="timer-ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="rgba(0,0,0,.09)" /><circle cx="22" cy="22" r="19" stroke={low ? "#f87171" : "#ff5b26"} strokeDasharray={String(RING_C)} strokeDashoffset={String(ringOffset)} /></svg>
-              <div className="flex-1 text-left"><p className="text-[11px] text-grey uppercase tracking-[.15em]">Bayar dalam</p><p className={`font-display text-xl font-bold ${low ? "text-red-500" : "accent"}`}>{mm}:{ss}</p></div>
-              <span className="flex items-center gap-2 text-[11px] text-[#39e5b6]"><span className="pulse-dot" /> Menunggu</span>
-            </div>
-
-            <div className="mt-5 qr-frame">
-              <div className="flex items-center gap-2 self-start"><span className="font-display text-[13px] font-bold tracking-tight text-[#0b0b0c]">QRIS</span><span className="text-[9px] text-[#0b0b0c]/50 uppercase tracking-[.18em]">GAMVORA</span></div>
+            {/* QRIS Image */}
+            <div className="rounded-xl bg-white p-3 flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2 self-start"><span className="text-[13px] font-bold tracking-tight text-[#0b0b0c]">QRIS</span><span className="text-[9px] text-[#0b0b0c]/50 uppercase tracking-[.15em]">GAMVORA</span></div>
               {order.qrisUrl ? (
                 <div className="flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={order.qrisUrl} alt="QRIS GAMVORA" width={190} height={190} style={{ width: "min(58vw, 190px)", height: "auto", borderRadius: 6, objectFit: "contain" }} />
+                  <img src={order.qrisUrl} alt="QRIS GAMVORA" width={190} height={190} style={{ width: "min(60vw, 190px)", height: "auto", borderRadius: 6, objectFit: "contain" }} />
                 </div>
               ) : (
                 <div className="flex justify-center">
-                  <canvas ref={canvasRef} width={180} height={180} style={{ width: "min(58vw, 190px)", height: "min(58vw, 190px)", imageRendering: "pixelated", borderRadius: 6 }} />
+                  <canvas ref={canvasRef} width={180} height={180} style={{ width: "min(60vw, 190px)", height: "min(60vw, 190px)", imageRendering: "pixelated", borderRadius: 6 }} />
                 </div>
               )}
-              <p className="text-[10px] text-[#0b0b0c]/55 pb-1 text-center">Satu QR untuk semua e-wallet &amp; m-banking</p>
+              <p className="text-[10px] text-[#0b0b0c]/50 pb-0.5">Satu QR untuk semua e-wallet &amp; m-banking</p>
             </div>
 
-            <div className="mt-5 space-y-2.5 text-sm text-left">
+            {/* Order Details */}
+            <div className="space-y-2.5 text-sm">
               <div className="flex justify-between"><span className="text-grey">Game</span><span className="font-medium">{order.game}</span></div>
               <div className="flex justify-between"><span className="text-grey">User ID</span><span className="font-medium">{order.userId}</span></div>
               <div className="flex justify-between"><span className="text-grey">Paket</span><span className="font-medium">{order.nominalLabel} · {rupiah(order.price)}</span></div>
-              <div className="flex justify-between"><span className="text-grey">Order ID</span><span className="text-grey text-xs font-mono">{order.orderId}</span></div>
-              <div className="border-t border-line pt-3 flex justify-between items-center"><span className="text-grey">Total</span><span className="font-display text-xl font-bold accent">{rupiah(order.total)}</span></div>
+              <div className="flex justify-between"><span className="text-grey">Order ID</span><span className="text-grey text-xs mono">{order.orderId}</span></div>
+              <div className="border-t border-line pt-3 flex justify-between items-center"><span className="text-grey">Total</span><span className="text-xl font-bold accent">{rupiah(order.total)}</span></div>
             </div>
 
-            <button type="button" onClick={handlePaid} className="btn btn-primary w-full mt-5">Saya Sudah Bayar</button>
-            <button type="button" onClick={onClose} className="w-full text-xs text-grey hover:text-ink transition mt-3">Batalkan pesanan</button>
+            {/* Actions */}
+            <button type="button" onClick={handlePaid} className="btn-acid w-full py-3.5 text-sm font-semibold">Saya Sudah Bayar</button>
+            <button type="button" onClick={onClose} className="w-full text-xs text-grey hover:text-paper transition py-2">Batalkan pesanan</button>
           </div>
-        )}
+        </div>
+      )}
 
-        {step === "done" && (
-          <div className="py-2">
-            <div className="mx-auto w-20 h-20 rounded-full flex items-center justify-center bg-[rgba(57,229,182,.1)] border border-[rgba(57,229,182,.35)]">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#39e5b6" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+      {/* DONE STEP */}
+      {step === "done" && (
+        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
+          <div className="p-7 text-center">
+            <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center bg-[rgba(57,229,182,.1)] border border-[rgba(57,229,182,.3)]">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#39e5b6" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
             </div>
-            <h3 className="font-display text-2xl font-bold mt-6">Pembayaran berhasil</h3>
-            <p className="text-grey text-sm font-light mt-2">Terima kasih! Item sedang dikirim ke akunmu.</p>
-            <div className="mt-6 border border-line rounded-2xl p-4 text-left space-y-2.5 text-sm bg-paper">
-              <div className="flex justify-between"><span className="text-grey">Order ID</span><span className="text-grey text-xs font-mono">{order.orderId}</span></div>
+            <h3 className="text-xl font-bold mt-5">Pembayaran berhasil</h3>
+            <p className="text-grey text-sm mt-2">Terima kasih! Item sedang dikirim ke akunmu.</p>
+            <div className="mt-5 border border-line rounded-xl p-4 text-left space-y-2 text-sm bg-raise">
+              <div className="flex justify-between"><span className="text-grey">Order ID</span><span className="text-grey text-xs mono">{order.orderId}</span></div>
               <div className="flex justify-between"><span className="text-grey">Game</span><span className="font-medium">{order.game}</span></div>
               <div className="flex justify-between"><span className="text-grey">User ID</span><span className="font-medium">{order.userId}</span></div>
               <div className="flex justify-between"><span className="text-grey">Paket</span><span className="font-medium">{order.nominalLabel}</span></div>
-              <div className="border-t border-line pt-2.5 flex justify-between"><span className="text-grey">Dibayar</span><span className="accent font-display font-bold">{rupiah(order.total)}</span></div>
+              <div className="border-t border-line pt-2.5 flex justify-between"><span className="text-grey">Dibayar</span><span className="accent font-bold">{rupiah(order.total)}</span></div>
             </div>
-            <div className="mt-5 flex items-center justify-center gap-2 text-xs text-[#39e5b6]"><span className="pulse-dot" /> {deliverMsg}</div>
-            <button type="button" onClick={onClose} className="btn btn-primary w-full mt-5">Selesai</button>
+            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-[#39e5b6]"><span className="pulse-dot" /> {deliverMsg}</div>
+            <button type="button" onClick={onClose} className="btn-acid w-full mt-5 py-3.5 text-sm font-semibold">Selesai</button>
           </div>
-        )}
+        </div>
+      )}
 
-        {step === "expired" && (
-          <div className="py-2">
-            <div className="mx-auto w-20 h-20 rounded-full flex items-center justify-center border border-line bg-paper">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9a9aa4" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+      {/* EXPIRED STEP */}
+      {step === "expired" && (
+        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
+          <div className="p-7 text-center">
+            <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center border border-line bg-raise">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8c8c98" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
             </div>
-            <h3 className="font-display text-2xl font-bold mt-6">Waktu habis</h3>
-            <p className="text-grey text-sm font-light mt-2">QRIS sudah kedaluwarsa. Buat pesanan baru untuk melanjutkan.</p>
-            <button type="button" onClick={handleRetry} className="btn btn-primary w-full mt-5">Buat QRIS Baru</button>
-            <button type="button" onClick={onClose} className="w-full text-xs text-grey hover:text-ink transition mt-3">Tutup</button>
+            <h3 className="text-xl font-bold mt-5">Waktu habis</h3>
+            <p className="text-grey text-sm mt-2">QRIS sudah kedaluwarsa. Buat pesanan baru untuk melanjutkan.</p>
+            <button type="button" onClick={handleRetry} className="btn-acid w-full mt-5 py-3.5 text-sm font-semibold">Buat QRIS Baru</button>
+            <button type="button" onClick={onClose} className="w-full text-xs text-grey hover:text-paper transition mt-3 py-2">Tutup</button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

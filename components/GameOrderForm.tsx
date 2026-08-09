@@ -191,7 +191,7 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
       </div>
 
       {/* MOBILE STICKY BAR */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-line bg-ink/95 backdrop-blur-xl px-5 py-3 flex items-center justify-between gap-4">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-line bg-panel/95 backdrop-blur-xl px-5 py-3.5 flex items-center justify-between gap-4">
         <div>
           <p className="text-[10px] text-grey mono tracking-widest">TOTAL</p>
           <p className="mono text-xl font-bold">{selected ? rupiah(selected.price) : "Rp 0"}</p>
@@ -200,9 +200,9 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
           type="button"
           onClick={handleCheckout}
           disabled={!userId || userId.length < 4 || !selected}
-          className="btn-acid px-8 py-3 text-sm font-semibold disabled:opacity-40"
+          className="btn-acid px-8 py-3.5 text-sm font-semibold disabled:opacity-40 rounded-xl"
         >
-          Bayar
+          Bayar Sekarang
         </button>
       </div>
 

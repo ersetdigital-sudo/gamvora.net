@@ -55,16 +55,16 @@ export default async function TopUpPage({ params }: PageProps) {
     <>
       {/* HEADER */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-ink/80 border-b border-line">
-        <div className="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-5 h-14 sm:h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             {GAMVORA_LOGO}
-            <span className="font-semibold tracking-[.12em]">GAMVORA</span>
+            <span className="font-semibold tracking-[.12em] text-sm sm:text-base">GAMVORA</span>
           </Link>
           <nav className="hidden sm:flex items-center gap-6 text-sm text-grey">
             <Link href="/" className="hover:text-paper transition">Home</Link>
             <Link href="/#katalog" className="hover:text-paper transition">Game</Link>
           </nav>
-          <Link href="/" className="btn-ghost px-4 py-2 text-sm hidden sm:block">← Semua game</Link>
+          <Link href="/" className="btn-ghost px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">← Semua game</Link>
         </div>
       </header>
 
