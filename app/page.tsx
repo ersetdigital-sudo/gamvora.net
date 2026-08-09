@@ -216,7 +216,7 @@ export default function Home() {
               </svg>
               <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: ".12em" }}>GAMVORA</span>
             </div>
-            <p className="mut" style={{ marginTop: 14, fontSize: 13, lineHeight: 1.7, maxWidth: 260 }}>Layanan top up game resmi dengan proses otomatis 24 jam dan harga transparan.</p>
+            <p className="mut" style={{ marginTop: 14, fontSize: 13, lineHeight: 1.7, maxWidth: 260 }}>Top up game favorit jadi lebih simpel bersama GAMVORA. Nggak perlu buat akun atau repot melakukan login. Cukup pilih game, masukkan ID akun, pilih nominal yang diinginkan, lalu lakukan pembayaran. Proses top up dirancang cepat dan praktis agar kamu bisa kembali bermain tanpa menunggu lama.</p>
           </div>
           <div>
             <div className="eyebrow">Katalog</div>

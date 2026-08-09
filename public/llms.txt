@@ -1,7 +1,7 @@
-# LOOTNEXA
+# GAMVORA
 
 ## About
-LOOTNEXA adalah platform top up game untuk gamer Indonesia. Pilih game, masukkan User ID, pilih nominal, bayar.
+GAMVORA adalah platform top up game untuk gamer Indonesia. Nggak perlu buat akun atau repot login. Cukup pilih game, masukkan ID akun, pilih nominal, lalu bayar.
 
 ## Games Available
 - Mobile Legends (Diamond)
@@ -27,5 +27,5 @@ LOOTNEXA adalah platform top up game untuk gamer Indonesia. Pilih game, masukkan
 - Proses otomatis 24 jam
 
 ## Contact
-- Website: https://lootnexa.net
-- Email: lootnexa@gmail.com
+- Website: https://gamvora.net
+- Email: support@gamvora.net
