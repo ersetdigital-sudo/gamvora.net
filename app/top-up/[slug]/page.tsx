@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getGame } from "@/lib/games";
 import { GameOrderForm } from "@/components/GameOrderForm";
+import { Header } from "@/components/sections/Header";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 
 function rp(n: number): string {
@@ -22,14 +23,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: `Top up ${game.cur.toLowerCase()} ${game.name} di GAMVORA. Proses otomatis 24 jam, tanpa login akun, pembayaran QRIS.`,
   };
 }
-
-const GAMVORA_LOGO = (
-  <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-    <defs><linearGradient id="gv-h" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stopColor="#c8ff2e" /><stop offset="1" stopColor="#7b5cff" /></linearGradient></defs>
-    <path d="M25.09 10.75A10.5 10.5 0 1 0 25.09 21.25" stroke="url(#gv-h)" strokeWidth="4.4" strokeLinecap="round" />
-    <path d="M16.6 16H26.5" stroke="url(#gv-h)" strokeWidth="4.4" strokeLinecap="round" />
-  </svg>
-);
 
 export default async function TopUpPage({ params }: PageProps) {
   const { slug } = await params;
@@ -53,20 +46,7 @@ export default async function TopUpPage({ params }: PageProps) {
 
   return (
     <>
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-ink/80 border-b border-line">
-        <div className="max-w-5xl mx-auto px-5 h-14 sm:h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            {GAMVORA_LOGO}
-            <span className="font-semibold tracking-[.12em] text-sm sm:text-base">GAMVORA</span>
-          </Link>
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-grey">
-            <Link href="/" className="hover:text-paper transition">Home</Link>
-            <Link href="/#katalog" className="hover:text-paper transition">Game</Link>
-          </nav>
-          <Link href="/" className="btn-ghost px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">← Semua game</Link>
-        </div>
-      </header>
+      <Header />
 
       <main className="flex-1">
         {/* HERO SECTION */}
