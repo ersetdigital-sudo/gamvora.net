@@ -91,7 +91,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-paper flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-panel flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-[0.08]" style={{ background: "#c8ff2e" }} />
         <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.05]" style={{ background: "#c8ff2e" }} />
@@ -170,7 +170,7 @@ export default function AdminLoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   required
-                  className="w-full bg-paper border border-line rounded-xl px-4 py-3.5 text-sm text-paper placeholder:text-grey outline-none focus:border-accent focus:bg-white transition-all duration-200"
+                  className="w-full bg-panel border border-line rounded-xl px-4 py-3.5 text-sm text-paper placeholder:text-grey outline-none focus:border-accent focus:bg-white transition-all duration-200"
                 />
               </div>
 
@@ -182,7 +182,7 @@ export default function AdminLoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
-                    className="w-full bg-paper border border-line rounded-xl px-4 py-3.5 text-sm text-paper placeholder:text-grey outline-none focus:border-accent focus:bg-white transition-all duration-200"
+                    className="w-full bg-panel border border-line rounded-xl px-4 py-3.5 text-sm text-paper placeholder:text-grey outline-none focus:border-accent focus:bg-white transition-all duration-200"
                   />
                   <button
                     type="button"
@@ -198,7 +198,7 @@ export default function AdminLoginPage() {
                   type="button"
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 bg-paper border border-line rounded-xl py-3 text-sm text-paper/70 hover:bg-paper-2 hover:text-paper transition-all duration-200 disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-3 bg-panel border border-line rounded-xl py-3 text-sm text-paper/70 hover:bg-raise hover:text-paper transition-all duration-200 disabled:opacity-50"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -242,7 +242,7 @@ export default function AdminLoginPage() {
               {["F", "T", "L", "I"].map((icon, i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full bg-paper flex items-center justify-center text-grey hover:text-paper hover:bg-paper-2 border border-line transition cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-panel flex items-center justify-center text-grey hover:text-paper hover:bg-raise border border-line transition cursor-pointer"
                 >
                   <span className="text-[10px] font-medium">{icon}</span>
                 </div>

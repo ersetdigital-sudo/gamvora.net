@@ -103,7 +103,7 @@ export default async function AdminDashboard() {
         </Link>
         <Link
           href="/admin/qris"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-paper/70 hover:text-paper bg-paper-2 hover:bg-line border border-line transition"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-paper/70 hover:text-paper bg-raise hover:bg-line border border-line transition"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <rect x="3" y="3" width="7" height="7" />

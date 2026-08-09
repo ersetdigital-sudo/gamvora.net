@@ -39,7 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="min-h-screen bg-paper flex">
+    <div className="min-h-screen bg-panel flex">
       {/* Desktop sidebar */}
       <aside className="w-56 shrink-0 border-r border-line-dark bg-[#0d0d0f] hidden lg:flex flex-col">
         <div className="px-4 py-4 border-b border-white/[0.06]">
@@ -91,7 +91,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Mobile header */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="lg:hidden border-b border-line px-4 py-3 flex items-center justify-between bg-paper">
+        <header className="lg:hidden border-b border-line px-4 py-3 flex items-center justify-between bg-panel">
           <div className="flex items-center gap-2">
             <LogoMark className="w-6 h-6 shrink-0" />
             <span className="font-display font-semibold text-sm tracking-tight text-paper">Admin</span>
@@ -102,7 +102,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             )}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-grey hover:text-paper hover:bg-paper-2 transition"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-grey hover:text-paper hover:bg-raise transition"
             >
               {mobileOpen ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -115,7 +115,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         {/* Mobile nav dropdown */}
         {mobileOpen && (
-          <nav className="lg:hidden border-b border-line bg-paper px-2 py-2 space-y-0.5">
+          <nav className="lg:hidden border-b border-line bg-panel px-2 py-2 space-y-0.5">
             {NAV.map((item) => (
               <Link
                 key={item.href}
@@ -124,7 +124,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={`flex items-center gap-2.5 px-3 py-2.5 text-sm rounded-lg transition ${
                   pathname === item.href
                     ? "text-white bg-accent"
-                    : "text-paper hover:bg-paper-2"
+                    : "text-paper hover:bg-raise"
                 }`}
               >
                 <span className={pathname === item.href ? "text-white/80" : "text-grey"}>{item.icon}</span>
@@ -134,7 +134,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="px-3 pt-2 border-t border-line mt-1 space-y-2">
               {email && (
                 <div className="flex items-center gap-2 px-1">
-                  <div className="w-6 h-6 rounded-full bg-paper-2 flex items-center justify-center text-[10px] font-semibold text-grey shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-raise flex items-center justify-center text-[10px] font-semibold text-grey shrink-0">
                     {email.charAt(0).toUpperCase()}
                   </div>
                   <p className="text-[11px] text-grey truncate">{email}</p>
