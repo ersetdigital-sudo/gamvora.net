@@ -123,19 +123,6 @@ export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
       {/* MOBILE LAYOUT - food detail style */}
       <div className="lg:hidden">
         <div className="space-y-4">
-          {/* Game Info Card */}
-          <div className="rounded-2xl border border-line bg-panel p-5">
-            <div className="flex items-center gap-4">
-              <div className="logo-tile w-16 h-16 p-2.5 shrink-0">
-                <img src={game.logo} alt={game.name} className="w-full h-full object-contain" />
-              </div>
-              <div className="min-w-0">
-                <h1 className="text-lg font-bold truncate">{game.name}</h1>
-                <p className="text-sm text-grey mt-0.5">{game.cur}</p>
-              </div>
-            </div>
-          </div>
-
           {/* Account Input */}
           <div className="rounded-2xl border border-line bg-panel p-5">
             <h2 className="text-sm font-bold mb-3 flex items-center gap-2">
