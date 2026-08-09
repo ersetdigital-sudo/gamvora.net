@@ -76,26 +76,26 @@ export function CheckoutOverlay({ order, onClose }: CheckoutOverlayProps) {
   const low = secondsLeft <= 30;
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center sm:p-5" style={{ background: "rgba(10,10,12,.85)", backdropFilter: "blur(8px)" }}>
+    <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center sm:p-5" style={{ background: "rgba(10,10,12,.9)", backdropFilter: "blur(12px)" }}>
       <div className="absolute inset-0" onClick={onClose} />
       
       {/* PAY STEP */}
       {step === "pay" && (
-        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0 max-h-[90vh] overflow-y-auto">
+        <div className="relative w-full sm:max-w-[400px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0 max-h-[92vh] overflow-y-auto">
           {/* Header */}
           <div className="sticky top-0 bg-panel/95 backdrop-blur-xl border-b border-line px-5 py-4 flex items-center justify-between z-10">
             <div>
-              <p className="text-[11px] uppercase tracking-[.15em] text-grey">Pembayaran</p>
+              <p className="text-[10px] uppercase tracking-[.2em] text-grey">Pembayaran</p>
               <h3 className="text-lg font-bold mt-0.5">Scan QRIS</h3>
             </div>
-            <button type="button" onClick={onClose} className="w-9 h-9 rounded-full border border-line flex items-center justify-center text-grey hover:text-paper hover:border-grey/50 transition text-lg">×</button>
+            <button type="button" onClick={onClose} className="w-8 h-8 rounded-full border border-line flex items-center justify-center text-grey hover:text-paper hover:border-grey/50 transition text-base">×</button>
           </div>
 
           <div className="p-5 space-y-4">
             {/* Timer */}
             <div className="flex items-center gap-3 rounded-xl border border-line px-4 py-3 bg-raise">
               <svg className="timer-ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" stroke="rgba(255,255,255,.06)" /><circle cx="22" cy="22" r="19" stroke={low ? "#f87171" : "#c8ff2e"} strokeDasharray={String(RING_C)} strokeDashoffset={String(ringOffset)} /></svg>
-              <div className="flex-1"><p className="text-[11px] text-grey uppercase tracking-[.12em]">Bayar dalam</p><p className={`text-xl font-bold mono ${low ? "text-red-400" : "text-accent"}`}>{mm}:{ss}</p></div>
+              <div className="flex-1"><p className="text-[10px] text-grey uppercase tracking-[.15em]">Bayar dalam</p><p className={`text-xl font-bold mono ${low ? "text-red-400" : "text-accent"}`}>{mm}:{ss}</p></div>
               <span className="flex items-center gap-1.5 text-[11px] text-[#39e5b6]"><span className="pulse-dot" /> Menunggu</span>
             </div>
 
@@ -133,7 +133,7 @@ export function CheckoutOverlay({ order, onClose }: CheckoutOverlayProps) {
 
       {/* DONE STEP */}
       {step === "done" && (
-        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
+        <div className="relative w-full sm:max-w-[400px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
           <div className="p-7 text-center">
             <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center bg-[rgba(57,229,182,.1)] border border-[rgba(57,229,182,.3)]">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#39e5b6" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
@@ -155,7 +155,7 @@ export function CheckoutOverlay({ order, onClose }: CheckoutOverlayProps) {
 
       {/* EXPIRED STEP */}
       {step === "expired" && (
-        <div className="relative w-full sm:max-w-[420px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
+        <div className="relative w-full sm:max-w-[400px] bg-panel sm:rounded-2xl rounded-t-2xl border border-line shadow-2xl sm:m-0 m-0">
           <div className="p-7 text-center">
             <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center border border-line bg-raise">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8c8c98" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
