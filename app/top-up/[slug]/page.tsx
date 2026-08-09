@@ -111,8 +111,8 @@ export default async function TopUpPage({ params }: PageProps) {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="border-t border-line">
+      {/* FOOTER - hidden on mobile due to sticky bar */}
+      <footer className="border-t border-line hidden sm:block">
         <div className="max-w-5xl mx-auto px-5 py-10 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-grey">
           <div className="flex items-center gap-2">
             {GAMVORA_LOGO}
