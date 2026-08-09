@@ -13,165 +13,134 @@ interface GameOrderFormProps {
 export function GameOrderForm({ game, qrisUrl }: GameOrderFormProps) {
   const [userId, setUserId] = useState("");
   const [serverId, setServerId] = useState("");
-  const [selectedNominal, setSelectedNominal] = useState(0);
+  const [selectedNominal, setSelectedNominal] = useState<number | null>(null);
   const [showCheckout, setShowCheckout] = useState(false);
   const [orderId, setOrderId] = useState("");
 
   const nominals = game.nominals || [];
-  const current = nominals[selectedNominal];
+  const selected = selectedNominal !== null ? nominals[selectedNominal] : null;
 
   const handleCheckout = () => {
     if (!userId.trim() || userId.length < 4) return;
     if (game.server && !serverId.trim()) return;
-    setOrderId("LX" + Date.now().toString().slice(-8));
+    if (!selected) return;
+    setOrderId("GV" + Date.now().toString().slice(-8));
     setShowCheckout(true);
   };
 
   return (
     <>
-      <div className="card rounded-3xl p-5 sm:p-7">
-        <div>
-          <h3 className="font-display text-[15px] font-bold">
-            <span className="mr-2 accent">01</span>Pilih Game
-          </h3>
-          <div className="mt-4">
-            <div className="inline-flex items-center gap-2.5 rounded-2xl border border-accent bg-accent/10 px-3.5 py-2.5 text-[13px] font-semibold">
-              <span>{game.name}</span>
-            </div>
+      {/* Step 1: Account */}
+      <div>
+        <h2 className="text-xl font-semibold"><span className="mono text-accent">01.</span> Masukkan akun</h2>
+        <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className="text-xs text-grey">{game.user_id_label || "User ID"}</label>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              placeholder={game.user_id_placeholder || "contoh: 12345678"}
+              className="mt-1 w-full rounded-xl bg-raise border border-line px-4 py-3 text-sm outline-none focus:border-paper text-paper placeholder:text-grey/50"
+            />
           </div>
-        </div>
-
-        <div className="h-px bg-line my-7" />
-
-        <div>
-          <h3 className="font-display text-[15px] font-bold">
-            <span className="mr-2 accent">02</span>Data Akun
-          </h3>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {game.server && (
             <div>
-              <label className="block text-[12.5px] text-grey">{game.user_id_label}</label>
+              <label className="text-xs text-grey">{game.serverLabel || "Server ID"}</label>
               <input
                 type="text"
                 inputMode="numeric"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-                placeholder={game.user_id_placeholder}
-                className="mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] placeholder:text-grey/50 transition focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none"
+                value={serverId}
+                onChange={(e) => setServerId(e.target.value)}
+                placeholder="contoh: 2201"
+                className="mt-1 w-full rounded-xl bg-raise border border-line px-4 py-3 text-sm outline-none focus:border-paper text-paper placeholder:text-grey/50"
               />
             </div>
-            {game.server && (
-              <div>
-                <label className="block text-[12.5px] text-grey">{game.serverLabel}</label>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  value={serverId}
-                  onChange={(e) => setServerId(e.target.value)}
-                  placeholder="1000"
-                  className="mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] placeholder:text-grey/50 transition focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none"
-                />
-              </div>
-            )}
-          </div>
-          <p className="mt-3 text-[12px] text-grey">{game.hint}</p>
+          )}
         </div>
+        <p className="mt-3 text-xs text-grey">{game.hint}</p>
+      </div>
 
-        <div className="h-px bg-line my-7" />
-
-        <div>
-          <div className="flex items-baseline justify-between gap-4">
-            <h3 className="font-display text-[15px] font-bold">
-              <span className="mr-2 accent">03</span>Pilih Nominal
-            </h3>
-            <p className="text-[12px] text-grey">{nominals.length} pilihan</p>
-          </div>
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {nominals.map((n, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setSelectedNominal(i)}
-                className={`rounded-xl border bg-white px-3 py-3 text-left transition min-h-[44px] ${
-                  selectedNominal === i
-                    ? "border-accent bg-accent/10 shadow-[0_0_0_1px_rgba(255,91,38,.6),0_12px_30px_-18px_rgba(255,91,38,.9)]"
-                    : "border-line hover:border-accent/50 hover:-translate-y-0.5"
-                }`}
-              >
-                <p className="font-display text-[13px] sm:text-[14.5px] font-bold">{n.label}</p>
-                <p className="mt-0.5 text-[11px] sm:text-[12.5px] text-grey">{rupiah(n.price)}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="h-px bg-line my-7" />
-
-        <div>
-          <h3 className="font-display text-[15px] font-bold">
-            <span className="mr-2 accent">04</span>Metode Pembayaran
-          </h3>
-          <div className="mt-4">
-            <div className="flex items-center gap-4 rounded-2xl border border-[#39e5b6] bg-[rgba(57,229,182,.08)] px-4 py-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[rgba(57,229,182,.14)]">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#39e5b6" strokeWidth="1.8">
-                  <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" />
-                  <path d="M14 14h3v3h-3zM19 19h2M19 14h2v2" />
-                </svg>
-              </span>
-              <div>
-                <p className="text-[14.5px] font-semibold">QRIS</p>
-                <p className="mt-0.5 text-[12px] text-grey">Bisa dibayar dari semua e-wallet &amp; m-banking · tanpa biaya layanan</p>
-              </div>
-            </div>
-          </div>
-          <p className="mt-4 text-[12px] leading-relaxed text-grey">
-            GAMVORA tidak pernah meminta password, OTP, atau akses login akun game.
-          </p>
+      {/* Step 2: Nominal */}
+      <div>
+        <h2 className="text-xl font-semibold"><span className="mono text-accent">02.</span> Pilih nominal</h2>
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3 denoms">
+          {nominals.map((n, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setSelectedNominal(i)}
+              className={`card p-4 text-left ${selectedNominal === i ? "!border-accent !bg-raise" : ""}`}
+            >
+              <div className="font-semibold">{n.label}</div>
+              <div className="mono text-sm text-accent mt-1">{rp(n.price)}</div>
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="card rounded-3xl p-5 sm:p-6 lg:sticky lg:top-24">
-        <h3 className="font-display text-[15px] font-bold">Ringkasan Pesanan</h3>
-        <div className="mt-5 rounded-2xl border border-line bg-white p-3 flex items-center gap-3">
-          <div className="h-11 w-11 rounded-lg bg-line/50" />
-          <div>
-            <p className="text-[14px] font-semibold">{game.name}</p>
-            <p className="text-[12px] text-grey">{game.range} {game.cur}</p>
-          </div>
+      {/* Step 3: Payment */}
+      <div>
+        <h2 className="text-xl font-semibold"><span className="mono text-accent">03.</span> Metode pembayaran</h2>
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm paylist">
+          <div className="card p-4 text-center">QRIS</div>
+          <div className="card p-4 text-center">E-Wallet</div>
+          <div className="card p-4 text-center">Transfer Bank</div>
+          <div className="card p-4 text-center">Pulsa</div>
         </div>
-        <dl className="mt-5 space-y-3 text-[13.5px]">
-          <div className="flex justify-between gap-4"><dt className="text-grey">{game.user_id_label}</dt><dd className="font-medium text-ink/70">{userId || "—"}</dd></div>
-          {game.server && <div className="flex justify-between gap-4"><dt className="text-grey">{game.serverLabel}</dt><dd className="font-medium text-ink/70">{serverId || "—"}</dd></div>}
-          <div className="flex justify-between gap-4"><dt className="text-grey">Nominal</dt><dd className="font-medium text-ink/70">{current?.label || "—"}</dd></div>
-          <div className="flex justify-between gap-4"><dt className="text-grey">Harga</dt><dd className="font-medium text-ink/70">{current ? rupiah(current.price) : "—"}</dd></div>
-          <div className="flex justify-between gap-4"><dt className="text-grey">Biaya layanan</dt><dd className="font-medium text-ink/70">Rp0</dd></div>
-          <div className="flex justify-between gap-4"><dt className="text-grey">Pembayaran</dt><dd className="font-medium text-ink/70">QRIS</dd></div>
-        </dl>
-        <div className="h-px bg-line my-5" />
-        <div className="flex items-end justify-between">
-          <p className="text-[13px] text-grey">Total pembayaran</p>
-          <p className="font-display text-[26px] font-extrabold">{current ? rupiah(current.price) : "Rp0"}</p>
+      </div>
+
+      {/* Sidebar Summary (desktop) */}
+      <aside className="lg:col-span-1 hidden lg:block">
+        <div className="card p-6 sticky top-24">
+          <div className="mono text-[11px] tracking-widest text-grey">RINGKASAN ORDER</div>
+          <div className="mt-4 space-y-2 text-sm">
+            <div className="flex justify-between"><span className="text-grey">Game</span><span>{game.name}</span></div>
+            <div className="flex justify-between"><span className="text-grey">Item</span><span>{selected?.label || "—"}</span></div>
+            <div className="flex justify-between"><span className="text-grey">Biaya admin</span><span className="text-accent">Rp 0</span></div>
+          </div>
+          <div className="border-t border-line mt-4 pt-4 flex justify-between items-center">
+            <span className="text-grey text-sm">Total</span>
+            <span className="mono text-2xl font-semibold">{selected ? rp(selected.price) : "Rp 0"}</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleCheckout}
+            disabled={!userId || userId.length < 4 || !selected}
+            className="btn-acid block text-center px-5 py-3 mt-5 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Bayar Sekarang
+          </button>
+          <p className="mt-3 text-[11px] text-grey text-center">Rata-rata selesai dalam 12 detik. Dana kembali penuh bila pesanan gagal.</p>
+        </div>
+      </aside>
+
+      {/* Mobile sticky bar */}
+      <div className="paybar lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-line bg-ink/95 backdrop-blur px-5 py-3 flex items-center justify-between gap-4">
+        <div>
+          <div className="text-[10px] text-grey mono tracking-widest">TOTAL</div>
+          <div className="mono text-lg font-semibold">{selected ? rp(selected.price) : "Rp 0"}</div>
         </div>
         <button
           type="button"
           onClick={handleCheckout}
-          disabled={!userId || userId.length < 4 || !current}
-          className="btn btn-primary mt-6 w-full text-[15px] disabled:opacity-40 disabled:cursor-not-allowed"
+          disabled={!userId || userId.length < 4 || !selected}
+          className="btn-acid px-6 py-3 text-sm disabled:opacity-40"
         >
           Bayar Sekarang
         </button>
-        <p className="mt-4 text-[11.5px] leading-relaxed text-grey">Harga yang tercantum sudah final tanpa biaya tambahan.</p>
       </div>
 
-      {showCheckout && current && (
+      {showCheckout && selected && (
         <CheckoutOverlay
           order={{
             game: game.name,
             userId,
             serverId: game.server ? serverId : "—",
-            nominalLabel: current.label,
-            price: current.price,
-            total: current.price,
+            nominalLabel: selected.label,
+            price: selected.price,
+            total: selected.price,
             orderId,
             qrisUrl,
           }}
