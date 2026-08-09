@@ -228,8 +228,6 @@ export default function Home() {
               <a href="mailto:support@gamvora.net">support@gamvora.net</a>
               <span>Respons rata-rata &lt; 5 menit</span>
             </div>
-            <div className="eyebrow" style={{ marginTop: 26 }}>Pembayaran</div>
-            <div className="mut" style={{ marginTop: 12, fontSize: 13, lineHeight: 1.7 }}>QRIS · DANA · OVO · GoPay · Transfer bank</div>
           </div>
         </div>
         <div className="streak" />
