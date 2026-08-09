@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { GAMES } from "@/lib/games";
+import { Header } from "@/components/sections/Header";
 
 const GAMVORA_LOGO = (
   <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-label="GAMVORA" style={{ flexShrink: 0 }}>
@@ -34,22 +35,7 @@ export default function Home() {
 
   return (
     <>
-      {/* NAV */}
-      <header style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(12px)", background: "rgba(10,10,12,.72)", borderBottom: "1px solid var(--color-line)" }}>
-        <div className="wrap" style={{ height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9 }}>
-            {GAMVORA_LOGO}
-            <span style={{ fontSize: 16, fontWeight: 600, letterSpacing: ".12em" }}>GAMVORA</span>
-          </Link>
-          <nav className="mut navlinks" style={{ display: "flex", alignItems: "center", gap: 28, fontSize: 14 }}>
-            <Link href="/#katalog">Katalog</Link>
-            <Link href="/#cara">Cara kerja</Link>
-            <Link href="/#alasan">Kenapa kami</Link>
-            <Link href="/#faq">FAQ</Link>
-          </nav>
-          <Link href="/#katalog" className="btn btn-primary" style={{ padding: "9px 18px", fontSize: 14 }}>Top up</Link>
-        </div>
-      </header>
+      <Header />
 
       {/* HERO */}
       <section style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid var(--color-line)" }}>
