@@ -60,8 +60,11 @@
   }
   .btn-primary { background: var(--color-accent); color: #0a0a0c; }
   .btn-primary:hover { background: #d6ff5c; }
-  .btn-ghost { border: 1px solid var(--color-line); color: var(--color-paper); }
+  .btn-ghost { border: 1px solid var(--color-line); color: var(--color-paper); background: transparent; }
   .btn-ghost:hover { border-color: var(--color-violet); background: rgba(123, 92, 255, 0.12); }
+  
+  .btn-acid { background: var(--color-accent); color: #0a0a0c; font-weight: 600; border-radius: 10px; transition: 0.18s; display: inline-block; text-align: center; }
+  .btn-acid:hover { background: #d6ff5c; }
   
   .tile {
     background: #1a1a20;
